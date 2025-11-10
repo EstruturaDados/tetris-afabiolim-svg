@@ -60,3 +60,30 @@ void mostrarFila() {
         printf("  id=%d tipo=%c\n", fila[idx].id, fila[idx].tipo);
     }
 }
+
+
+// Operações da Pilha 
+void push(Peca p) {
+    if (pilhaCheia()) {
+        printf("Reserva cheia! Não é possível guardar mais peças.\n");
+        return;
+    }
+    pilha[++topo] = p;
+}
+
+Peca pop() {
+    Peca vazia = {0, '-'};
+    if (pilhaVazia()) {
+        printf("Reserva vazia! Nada para usar.\n");
+        return vazia;
+    }
+    return pilha[topo--];
+}
+
+void mostrarPilha() {
+    printf("\nPILHA (topo -> base):\n");
+    if (pilhaVazia()) { printf("[vazia]\n"); return; }
+    for (int i = topo; i >= 0; i--) {
+        printf("  id=%d tipo=%c\n", pilha[i].id, pilha[i].tipo);
+    }
+}
