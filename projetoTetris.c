@@ -59,7 +59,7 @@ Peca dequeue() {
 
 // Estado atual da fila
 void mostrarFila() {
-    printf("\n--- FILA DE PECAS ---\n");
+    printf("\n---FILA DE PECAS ---\n");
     if (isEmpty()) {
         printf("[vazia]\n");
         return;
@@ -68,5 +68,5 @@ void mostrarFila() {
         int idx = (frente + i) % TAM_FILA;
         printf("[%d] id=%d tipo=%c\n", i+1, fila[idx].id, fila[idx].tipo);
     }
-    printf("---------------------\n\n");
+    printf("-----------------\n\n");
 }
