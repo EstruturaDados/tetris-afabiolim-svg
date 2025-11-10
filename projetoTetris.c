@@ -70,3 +70,12 @@ void mostrarFila() {
     }
     printf("-----------------\n\n");
 }
+
+// Fução principal do projeto
+int main() {
+    srand(time(NULL));
+
+    // Inicializa fila com 5 peças
+    for (int i = 0; i < TAM_FILA; i++) {
+        enqueue(gerarPeca());
+    }
