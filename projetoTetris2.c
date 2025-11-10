@@ -24,3 +24,13 @@ int filaVazia() { return tamanhoFila == 0; }
 int filaCheia() { return tamanhoFila == TAM_FILA; }
 int pilhaVazia() { return topo == -1; }
 int pilhaCheia() { return topo == TAM_PILHA - 1; }
+
+//gerarPeca
+Peca gerarPeca() {
+    char tipos[] = {'I','O','T','L','S','Z','J'};
+    int idx = rand() % 7;
+    Peca p;
+    p.id = proximoId++;
+    p.tipo = tipos[idx];
+    return p;
+}
