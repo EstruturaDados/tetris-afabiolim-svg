@@ -25,7 +25,7 @@ int filaCheia() { return tamanhoFila == TAM_FILA; }
 int pilhaVazia() { return topo == -1; }
 int pilhaCheia() { return topo == TAM_PILHA - 1; }
 
-//gerarPeca
+//gerar Pecas
 Peca gerarPeca() {
     char tipos[] = {'I','O','T','L','S','Z','J'};
     int idx = rand() % 7;
@@ -33,4 +33,30 @@ Peca gerarPeca() {
     p.id = proximoId++;
     p.tipo = tipos[idx];
     return p;
+}
+
+// Operações da Fila 
+void enqueue(Peca p) {
+    if (filaCheia()) return;
+    int pos = (frente + tamanhoFila) % TAM_FILA;
+    fila[pos] = p;
+    tamanhoFila++;
+}
+
+Peca dequeue() {
+    Peca vazia = {0, '-'};
+    if (filaVazia()) return vazia;
+    Peca removida = fila[frente];
+    frente = (frente + 1) % TAM_FILA;
+    tamanhoFila--;
+    return removida;
+}
+
+void mostrarFila() {
+    printf("\nFILA (frente -> tras):\n");
+    if (filaVazia()) { printf("[vazia]\n"); return; }
+    for (int i = 0; i < tamanhoFila; i++) {
+        int idx = (frente + i) % TAM_FILA;
+        printf("  id=%d tipo=%c\n", fila[idx].id, fila[idx].tipo);
+    }
 }
