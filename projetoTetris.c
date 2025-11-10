@@ -33,3 +33,13 @@ Peca gerarPeca() {
     return p;
 }
 
+// funçao Nova peça
+void enqueue(Peca p) {
+    if (isFull()) {
+        printf("Fila cheia! Nao e possivel adicionar nova peca.\n");
+        return;
+    }
+    int pos = (frente + tamanho) % TAM_FILA;
+    fila[pos] = p;
+    tamanho++;
+}
