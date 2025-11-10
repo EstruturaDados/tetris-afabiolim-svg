@@ -79,3 +79,13 @@ int main() {
     for (int i = 0; i < TAM_FILA; i++) {
         enqueue(gerarPeca());
     }
+
+    int opc;
+    do {
+        printf("===TETRIS STACK / NIVEL NOVATO ===\n");
+        printf("1 - Jogar peca (remove e gera nova)\n");
+        printf("2 - Inserir nova peca manual\n");
+        printf("3 - Mostrar fila\n");
+        printf("0 - Sair\n");
+        printf("Escolha: ");
+        scanf("%d", &opc);
