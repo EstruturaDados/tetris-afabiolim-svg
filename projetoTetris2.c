@@ -18,3 +18,9 @@ int frente = 0, tamanhoFila = 0;
 Peca pilha[TAM_PILHA];
 int topo = -1;
 int proximoId = 1;
+
+// Funções auxiliares
+int filaVazia() { return tamanhoFila == 0; }
+int filaCheia() { return tamanhoFila == TAM_FILA; }
+int pilhaVazia() { return topo == -1; }
+int pilhaCheia() { return topo == TAM_PILHA - 1; }
