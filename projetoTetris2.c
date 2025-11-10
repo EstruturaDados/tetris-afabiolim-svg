@@ -87,3 +87,21 @@ void mostrarPilha() {
         printf("  id=%d tipo=%c\n", pilha[i].id, pilha[i].tipo);
     }
 }
+
+
+// Função Principal 
+int main() {
+    srand(time(NULL));
+
+    for (int i = 0; i < TAM_FILA; i++)
+        enqueue(gerarPeca());
+
+    int op;
+    do {
+        printf("\n=== TETRIS STACK / NIVEL AVENTUREIRO ===\n");
+        printf("1 - Jogar peca (remove da fila e gera nova)\n");
+        printf("2 - Reservar peca (envia para pilha)\n");
+        printf("3 - Usar peca reservada (tira da pilha e coloca na fila)\n");
+        printf("0 - Sair\n");
+        printf("Escolha: ");
+        scanf("%d", &op);
