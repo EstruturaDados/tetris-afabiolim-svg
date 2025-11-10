@@ -105,3 +105,34 @@ int main() {
         printf("0 - Sair\n");
         printf("Escolha: ");
         scanf("%d", &op);
+
+
+         if (op == 1) {
+            Peca jogada = dequeue();
+            if (jogada.id != 0) {
+                printf("Jogou peca id=%d tipo=%c\n", jogada.id, jogada.tipo);
+                enqueue(gerarPeca());
+            }
+        } else if (op == 2) {
+            if (!filaVazia()) {
+                Peca reservada = dequeue();
+                push(reservada);
+                printf("Reservou peca id=%d tipo=%c\n", reservada.id, reservada.tipo);
+                enqueue(gerarPeca());
+            }
+        } else if (op == 3) {
+            Peca usada = pop();
+            if (usada.id != 0) {
+                enqueue(usada);
+                printf("Usou peca reservada id=%d tipo=%c\n", usada.id, usada.tipo);
+            }
+        }
+
+        mostrarFila();
+        mostrarPilha();
+
+    } while (op != 0);
+
+    printf("Encerrando...\n");
+    return 0;
+}
