@@ -89,3 +89,23 @@ int main() {
         printf("0 - Sair\n");
         printf("Escolha: ");
         scanf("%d", &opc);
+
+        if (opc == 1) {
+            Peca jogada = dequeue();
+            if (jogada.id != 0) {
+                printf("Voce jogou a peca: id=%d tipo=%c\n", jogada.id, jogada.tipo);
+                Peca nova = gerarPeca();
+                enqueue(nova);
+                printf("Nova peca gerada: id=%d tipo=%c\n", nova.id, nova.tipo);
+            }
+        } else if (opc == 2) {
+            enqueue(gerarPeca());
+        } else if (opc == 3) {
+            mostrarFila();
+        }
+
+    } while (opc != 0);
+
+    printf("Encerrando o jogo...\n");
+    return 0;
+}
