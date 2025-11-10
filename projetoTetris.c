@@ -43,3 +43,30 @@ void enqueue(Peca p) {
     fila[pos] = p;
     tamanho++;
 }
+
+// Remove peça da frente
+Peca dequeue() {
+    Peca vazia = {0, '-'};
+    if (isEmpty()) {
+        printf("Fila vazia! Nao ha pecas para jogar.\n");
+        return vazia;
+    }
+    Peca removida = fila[frente];
+    frente = (frente + 1) % TAM_FILA;
+    tamanho--;
+    return removida;
+}
+
+// Estado atual da fila
+void mostrarFila() {
+    printf("\n--- FILA DE PECAS ---\n");
+    if (isEmpty()) {
+        printf("[vazia]\n");
+        return;
+    }
+    for (int i = 0; i < tamanho; i++) {
+        int idx = (frente + i) % TAM_FILA;
+        printf("[%d] id=%d tipo=%c\n", i+1, fila[idx].id, fila[idx].tipo);
+    }
+    printf("---------------------\n\n");
+}
