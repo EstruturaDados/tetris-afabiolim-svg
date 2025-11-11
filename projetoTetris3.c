@@ -121,6 +121,20 @@ void inverterFila() {
     printf("Fila invertida!\n");
 }
 
+
+// Troca o topo da pilha
+void trocar() {
+    if (pilhaVazia() || filaVazia()) {
+        printf("Nao ha pecas suficientes para troca.\n");
+        return;
+    }
+    Peca temp = pilha[topo];
+    pilha[topo] = fila[frente];
+    fila[frente] = temp;
+    printf("Trocou topo da pilha com frente da fila!\n");
+}
+
+
 }
 int main() {
 
