@@ -77,6 +77,17 @@ void mostrarFila() {
 }
 
 
+// Mostra pilha
+void mostrarPilha() {
+    printf("\nPILHA:\n");
+    if (pilhaVazia()) printf("[vazia]\n");
+    else for (int i = topo; i >= 0; i--)
+        printf("id=%d tipo=%c\n", pilha[i].id, pilha[i].tipo);
+}
+
+
+
+
 }
 int main() {
 
