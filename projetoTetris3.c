@@ -85,7 +85,11 @@ void mostrarPilha() {
         printf("id=%d tipo=%c\n", pilha[i].id, pilha[i].tipo);
 }
 
-
+// Salva peça histórico 
+void registrar(Peca p) {
+    if (tamHist < TAM_HISTORICO)
+        historico[tamHist++] = p;
+}
 
 
 }
