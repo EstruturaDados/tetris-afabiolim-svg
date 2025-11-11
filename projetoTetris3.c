@@ -66,6 +66,16 @@ Peca pop() {
 }
 
 
+// Mostra a fila
+void mostrarFila() {
+    printf("\nFILA:\n");
+    if (filaVazia()) printf("[vazia]\n");
+    else for (int i = 0; i < tamanhoFila; i++) {
+        int idx = (frente + i) % TAM_FILA; 
+        printf("id=%d tipo=%c\n", fila[idx].id, fila[idx].tipo);
+    }
+}
+
 
 }
 int main() {
