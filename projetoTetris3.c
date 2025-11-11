@@ -23,9 +23,25 @@ int tamHist = 0;
 
 int proximoId = 1;
 
+int filaCheia() { return tamanhoFila == TAM_FILA; }
+int filaVazia() { return tamanhoFila == 0; }
+int pilhaCheia() { return topo == TAM_PILHA - 1; }
+int pilhaVazia() { return topo == -1; }
 
-
-
+Peca gerarPeca() {
+    char tipos[] = {'I','O','T','L','S','Z','J'};
+    int idx = rand() % 7; // Escolhe um tipo aleatório
+    Peca p = { proximoId++, tipos[idx] };
+    return p;
+}
+ 
+// peça no fim da fila
+void enqueue(Peca p) {
+    if (filaCheia()) return; // Se estiver cheia, não faz nada
+    int pos = (frente + tamanhoFila) % TAM_FILA; // Calcula posição circular
+    fila[pos] = p;
+    tamanhoFila++;
+}
 int main() {
 
     return 0;
