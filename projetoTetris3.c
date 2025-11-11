@@ -38,9 +38,25 @@ Peca gerarPeca() {
 // peça no fim da fila
 void enqueue(Peca p) {
     if (filaCheia()) return; // Se estiver cheia, não faz nada
-    int pos = (frente + tamanhoFila) % TAM_FILA; // Calcula posição circular
+    int pos = (frente + tamanhoFila) % TAM_FILA; 
     fila[pos] = p;
     tamanhoFila++;
+
+
+// Remove a peça da frente da fila
+Peca dequeue() {
+    Peca vazia = {0, '-'}; // Peça vazia
+    if (filaVazia()) return vazia;
+
+    Peca r = fila[frente]; // Pega a peça da frente
+    frente = (frente + 1) % TAM_FILA; 
+    tamanhoFila--;
+    return r;
+}
+
+
+
+
 }
 int main() {
 
