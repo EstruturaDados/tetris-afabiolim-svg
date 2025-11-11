@@ -48,12 +48,22 @@ Peca dequeue() {
     Peca vazia = {0, '-'}; // Peça vazia
     if (filaVazia()) return vazia;
 
-    Peca r = fila[frente]; // Pega a peça da frente
+    Peca r = fila[frente]; // peça da frente
     frente = (frente + 1) % TAM_FILA; 
     tamanhoFila--;
     return r;
 }
 
+void push(Peca p) {
+    if (!pilhaCheia()) pilha[++topo] = p;
+}
+
+// peça do topo
+Peca pop() {
+    Peca vazia = {0,'-'};
+    if (pilhaVazia()) return vazia;
+    return pilha[topo--];
+}
 
 
 
