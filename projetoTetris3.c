@@ -12,6 +12,18 @@ typedef struct {
 #define TAM_HISTORICO 10
 
 
+Peca fila[TAM_FILA];
+int frente = 0, tamanhoFila = 0;
+
+Peca pilha[TAM_PILHA];
+int topo = -1;
+
+Peca historico[TAM_HISTORICO];
+int tamHist = 0;
+
+int proximoId = 1;
+
+
 
 
 int main() {
