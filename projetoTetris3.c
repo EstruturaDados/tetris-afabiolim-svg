@@ -91,6 +91,16 @@ void registrar(Peca p) {
         historico[tamHist++] = p;
 }
 
+// Desfaz última jogada
+void desfazer() {
+    if (tamHist == 0) {
+        printf("Nada a desfazer.\n");
+        return;
+    }
+    Peca ultima = historico[--tamHist];
+    enqueue(ultima);
+    printf("Desfez jogada: id=%d tipo=%c\n", ultima.id, ultima.tipo);
+}
 
 }
 int main() {
