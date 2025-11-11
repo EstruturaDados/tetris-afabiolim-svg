@@ -102,6 +102,25 @@ void desfazer() {
     printf("Desfez jogada: id=%d tipo=%c\n", ultima.id, ultima.tipo);
 }
 
+// Inverte a ordem fila
+void inverterFila() {
+    if (filaVazia()) return;
+    Peca temp[TAM_FILA];
+
+    // Copia a fila para um vetor temporário
+    for (int i = 0; i < tamanhoFila; i++) {
+        int idx = (frente + i) % TAM_FILA;
+        temp[i] = fila[idx];
+    }
+
+    // Regrava
+    for (int i = 0; i < tamanhoFila; i++) {
+        fila[(frente + i) % TAM_FILA] = temp[tamanhoFila - 1 - i];
+    }
+
+    printf("Fila invertida!\n");
+}
+
 }
 int main() {
 
