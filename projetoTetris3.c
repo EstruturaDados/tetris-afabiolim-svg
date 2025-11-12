@@ -137,6 +137,21 @@ void trocar() {
 
 }
 int main() {
+    srand(time(NULL));
+    for (int i = 0; i < TAM_FILA; i++) enqueue(gerarPeca());
+
+    int op;
+    do {
+        printf("\n=== TETRIS STACK - NIVEL MESTRE ===\n");
+        printf("1 - Jogar peca\n");
+        printf("2 - Reservar peca\n");
+        printf("3 - Usar peca reservada\n");
+        printf("4 - Trocar topo da pilha com frente da fila\n");
+        printf("5 - Desfazer ultima jogada\n");
+        printf("6 - Inverter fila\n");
+        printf("0 - Sair\n");
+        printf("Escolha: ");
+        scanf("%d", &op);
 
     return 0;
 }
