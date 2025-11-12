@@ -11,7 +11,6 @@ typedef struct {
 #define TAM_PILHA 3
 #define TAM_HISTORICO 10
 
-
 Peca fila[TAM_FILA];
 int frente = 0, tamanhoFila = 0;
 
@@ -30,26 +29,23 @@ int pilhaVazia() { return topo == -1; }
 
 Peca gerarPeca() {
     char tipos[] = {'I','O','T','L','S','Z','J'};
-    int idx = rand() % 7; // Escolhe um tipo aleatório
+    int idx = rand() % 7;
     Peca p = { proximoId++, tipos[idx] };
     return p;
 }
- 
-// peça no fim da fila
+
 void enqueue(Peca p) {
-    if (filaCheia()) return; // Se estiver cheia, não faz nada
-    int pos = (frente + tamanhoFila) % TAM_FILA; 
+    if (filaCheia()) return;
+    int pos = (frente + tamanhoFila) % TAM_FILA;
     fila[pos] = p;
     tamanhoFila++;
+}
 
-
-// Remove a peça da frente da fila
 Peca dequeue() {
-    Peca vazia = {0, '-'}; // Peça vazia
+    Peca vazia = {0, '-'};
     if (filaVazia()) return vazia;
-
-    Peca r = fila[frente]; // peça da frente
-    frente = (frente + 1) % TAM_FILA; 
+    Peca r = fila[frente];
+    frente = (frente + 1) % TAM_FILA;
     tamanhoFila--;
     return r;
 }
@@ -57,27 +53,21 @@ Peca dequeue() {
 void push(Peca p) {
     if (!pilhaCheia()) pilha[++topo] = p;
 }
-
-// peça do topo
 Peca pop() {
     Peca vazia = {0,'-'};
     if (pilhaVazia()) return vazia;
     return pilha[topo--];
 }
 
-
-// Mostra a fila
 void mostrarFila() {
     printf("\nFILA:\n");
     if (filaVazia()) printf("[vazia]\n");
     else for (int i = 0; i < tamanhoFila; i++) {
-        int idx = (frente + i) % TAM_FILA; 
+        int idx = (frente + i) % TAM_FILA;
         printf("id=%d tipo=%c\n", fila[idx].id, fila[idx].tipo);
     }
 }
 
-
-// Mostra pilha
 void mostrarPilha() {
     printf("\nPILHA:\n");
     if (pilhaVazia()) printf("[vazia]\n");
@@ -85,13 +75,13 @@ void mostrarPilha() {
         printf("id=%d tipo=%c\n", pilha[i].id, pilha[i].tipo);
 }
 
-// Salva peça histórico 
+// salva no histórico
 void registrar(Peca p) {
     if (tamHist < TAM_HISTORICO)
         historico[tamHist++] = p;
 }
 
-// Desfaz última jogada
+// desfaz última jogada
 void desfazer() {
     if (tamHist == 0) {
         printf("Nada a desfazer.\n");
@@ -102,27 +92,21 @@ void desfazer() {
     printf("Desfez jogada: id=%d tipo=%c\n", ultima.id, ultima.tipo);
 }
 
-// Inverte a ordem fila
+// inverte a fila
 void inverterFila() {
     if (filaVazia()) return;
     Peca temp[TAM_FILA];
-
-    // Copia a fila para um vetor temporário
     for (int i = 0; i < tamanhoFila; i++) {
         int idx = (frente + i) % TAM_FILA;
         temp[i] = fila[idx];
     }
-
-    // Regrava
     for (int i = 0; i < tamanhoFila; i++) {
         fila[(frente + i) % TAM_FILA] = temp[tamanhoFila - 1 - i];
     }
-
     printf("Fila invertida!\n");
 }
 
-
-// Troca o topo da pilha
+// troca topo pilha com frente da fila
 void trocar() {
     if (pilhaVazia() || filaVazia()) {
         printf("Nao ha pecas suficientes para troca.\n");
@@ -133,9 +117,7 @@ void trocar() {
     fila[frente] = temp;
     printf("Trocou topo da pilha com frente da fila!\n");
 }
-
-
-}
+// Painel
 int main() {
     srand(time(NULL));
     for (int i = 0; i < TAM_FILA; i++) enqueue(gerarPeca());
@@ -153,7 +135,7 @@ int main() {
         printf("Escolha: ");
         scanf("%d", &op);
 
-         if (op == 1) {
+        if (op == 1) {
             Peca jogada = dequeue();
             if (jogada.id != 0) {
                 printf("Jogou peca id=%d tipo=%c\n", jogada.id, jogada.tipo);
@@ -167,7 +149,21 @@ int main() {
                 enqueue(gerarPeca());
                 printf("Reservou peca id=%d tipo=%c\n", reservada.id, reservada.tipo);
             }
-            
+        } else if (op == 3) {
+            Peca usada = pop();
+            if (usada.id != 0) {
+                enqueue(usada);
+                printf("Usou peca reservada id=%d tipo=%c\n", usada.id, usada.tipo);
+            }
+        } else if (op == 4) trocar();
+        else if (op == 5) desfazer();
+        else if (op == 6) inverterFila();
 
+        mostrarFila();
+        mostrarPilha();
+
+    } while (op != 0);
+
+    printf("Encerrando o jogo...\n");
     return 0;
 }
