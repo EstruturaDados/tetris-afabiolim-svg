@@ -153,5 +153,21 @@ int main() {
         printf("Escolha: ");
         scanf("%d", &op);
 
+         if (op == 1) {
+            Peca jogada = dequeue();
+            if (jogada.id != 0) {
+                printf("Jogou peca id=%d tipo=%c\n", jogada.id, jogada.tipo);
+                registrar(jogada);
+                enqueue(gerarPeca());
+            }
+        } else if (op == 2) {
+            if (!filaVazia()) {
+                Peca reservada = dequeue();
+                push(reservada);
+                enqueue(gerarPeca());
+                printf("Reservou peca id=%d tipo=%c\n", reservada.id, reservada.tipo);
+            }
+            
+
     return 0;
 }
