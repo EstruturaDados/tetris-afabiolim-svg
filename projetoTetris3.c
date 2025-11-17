@@ -124,7 +124,7 @@ int main() {
 
     int op;
     do {
-        printf("\n=== TETRIS STACK - NIVEL MESTRE ===\n");
+        printf("\n=== TETRIS STACK ===\n");
         printf("1 - Jogar peca\n");
         printf("2 - Reservar peca\n");
         printf("3 - Usar peca reservada\n");
